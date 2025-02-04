@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard CV - Gaston Roberto Gimenez</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #000;
+            box-shadow: 0 4px 8px rgba(255, 255, 0, 0.2);
+            border-radius: 10px;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h1, h2 {
+            color: #ffcc00;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            animation: slideInDown 1s ease-in-out;
+        }
+        .header p {
+            font-size: 1.2rem;
+            color: #ccc;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        .header .cta-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 25px;
+            background: #ffcc00;
+            color: #000;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .header .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .timeline-container {
+            margin: 20px 0;
+            position: relative;
+        }
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+        }
+        .timeline::-webkit-scrollbar {
+            height: 8px;
+        }
+        .timeline::-webkit-scrollbar-thumb {
+            background: #ffcc00;
+            border-radius: 4px;
+        }
+        .timeline-year {
+            flex: 0 0 auto;
+            padding: 10px 20px;
+            background: #ffcc00;
+            color: #000;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        .timeline-year:hover {
+            background: #e6b800;
+        }
+        .timeline-content {
+            margin-top: 20px;
+        }
+        .timeline-content.hidden {
+            display: none;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .chart-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        .chart-item {
+            width: 150px;
+            height: 150px;
+            position: relative;
+        }
+        .chart-item canvas {
+            width: 100%;
+            height: 100%;
+        }
+        .chart-label {
+            font-size: 0.9rem; /* Reducir el tamaño de fuente */
+            text-align: center;
+            margin-top: 5px;
+            line-height: 1.2; /* Ajustar el espaciado entre líneas */
+        }
+        .dropdown {
+            margin-bottom: 15px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(255, 255, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .dropdown-header {
+            background: #ffcc00;
+            color: #000;
+            padding: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        .dropdown-header:hover {
+            background: #e6b800;
+            transform: scale(1.02);
+        }
+        .dropdown-content {
+            display: none;
+            padding: 15px;
+            background: #111;
+            border: 1px solid #333;
+            animation: slideInUp 0.5s ease-in-out;
+        }
+        .dropdown-content ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .dropdown-content li {
+            margin: 8px 0;
+            font-size: 1rem;
+            color: #ccc;
+            animation: fadeIn 0.5s ease-in-out;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .dropdown-content li:hover {
+            background: #ffcc00;
+            color: #000;
+            border-radius: 5px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideInDown {
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>GASTON ROBERTO GIMENEZ</h1>
+            <p>Operador de Planta (Producción), Diseño de Datos</p>
+            <p><strong>eMail:</strong> <a href="mailto:gastonrobertogimenez@gmail.com" style="color: #ffcc00;">gastonrobertogimenez@gmail.com</a></p>
+            <a href="https://api.whatsapp.com/send?phone=+543834689137&text=Hola%20...Vi%20tu%20perfil%20en%20Linkedin!" class="cta-button">Contactar por WhatsApp</a>
+        </div>
+
+        <!-- Personalidad -->
+        <div class="section">
+            <h2>Tipo de Personalidad: Comandante (ENTJ-A)</h2>
+            <p>Los Comandantes son líderes audaces, imaginativos y tenaces, siempre buscando un camino – o construyendo un camino.</p>
+            <div class="chart-container">
+                <div class="chart-item">
+                    <canvas id="energyChart"></canvas>
+                    <div class="chart-label">Energía: Extravertido 75%</div>
+                </div>
+                <div class="chart-item">
+                    <canvas id="thoughtChart"></canvas>
+                    <div class="chart-label">Naturaleza Pensamiento: 56%</div>
+                </div>
+                <div class="chart-item">
+                    <canvas id="identityChart"></canvas>
+                    <div class="chart-label">Identidad: Asertivo 65%</div>
+                </div>
+                <div class="chart-item">
+                    <canvas id="mindChart"></canvas>
+                    <div class="chart-label">Mente: Intuitivo 68%</div>
+                </div>
+                <div class="chart-item">
+                    <canvas id="tacticsChart"></canvas>
+                    <div class="chart-label">Tácticas: Juzgador 88%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Línea de Tiempo -->
+        <div class="timeline-container">
+            <div class="timeline">
+                <div class="timeline-year" onclick="showContent('1995')">1995</div>
+                <div class="timeline-year" onclick="showContent('1999')">1999</div>
+                <div class="timeline-year" onclick="showContent('2000')">2000</div>
+                <div class="timeline-year" onclick="showContent('2001')">2001</div>
+                <div class="timeline-year" onclick="showContent('2010')">2010</div>
+                <div class="timeline-year" onclick="showContent('2013')">2013</div>
+                <div class="timeline-year" onclick="showContent('2019')">2019</div>
+                <div class="timeline-year" onclick="showContent('2022')">2022</div>
+                <div class="timeline-year" onclick="showContent('2023')">2023</div>
+                <div class="timeline-year" onclick="showContent('2024')">2024</div>
+            </div>
+        </div>
+
+        <!-- Contenido Dinámico -->
+        <div id="content-1995" class="timeline-content hidden">
+            <h2>1995</h2>
+            <p><strong>Educación:</strong> Comenzó estudios como Técnico Químico en la Técnica Luciano Reyes.</p>
+            <p><strong>Experiencia Laboral:</strong> Inicio en Cervecería y Maltería Quilmes operando la línea Zimonazzi en el sector de envasado.</p>
+        </div>
+        <div id="content-1999" class="timeline-content hidden">
+            <h2>1999</h2>
+            <p><strong>Experiencia Laboral:</strong> Trabajó en Softys operando la línea 40 en la fabricación de papel higiénico.</p>
+        </div>
+        <div id="content-2000" class="timeline-content hidden">
+            <h2>2000</h2>
+            <p><strong>Experiencia Laboral:</strong> Comenzó en Cabot Argentina operando reactores en sala de control distribuido, planta de efluentes industriales, sala de máquinas y caldera acuotubular.</p>
+        </div>
+        <div id="content-2001" class="timeline-content hidden">
+            <h2>2001</h2>
+            <p><strong>Certificaciones:</strong> Obtuvo certificación como Foguista emitida por la Secretaría de Medio Ambiente de la provincia de Buenos Aires.</p>
+        </div>
+        <div id="content-2010" class="timeline-content hidden">
+            <h2>2010</h2>
+            <p><strong>Certificaciones:</strong> Obtuvo certificación como Operador de Control Distribuido DeltaV.</p>
+        </div>
+        <div id="content-2013" class="timeline-content hidden">
+            <h2>2013</h2>
+            <p><strong>Experiencia Laboral:</strong> Finalizó su etapa en Cabot Argentina tras 13 años de experiencia.</p>
+        </div>
+        <div id="content-2019" class="timeline-content hidden">
+            <h2>2019</h2>
+            <p><strong>Educación:</strong> Comenzó estudios de Lic. en Comercio Internacional en la Universidad de Luján.</p>
+        </div>
+        <div id="content-2022" class="timeline-content hidden">
+            <h2>2022</h2>
+            <p><strong>Certificaciones:</strong> Obtuvo certificación en Data Analytics.</p>
+        </div>
+        <div id="content-2023" class="timeline-content hidden">
+            <h2>2023</h2>
+            <p><strong>Educación:</strong> Comenzó estudios de Lic. en IA y Robótica en la Universidad Siglo XXI.</p>
+            <p><strong>Certificaciones:</strong> Obtuvo certificación en Data Science.</p>
+        </div>
+        <div id="content-2024" class="timeline-content hidden">
+            <h2>2024</h2>
+            <p><strong>Certificaciones:</strong> Obtuvo certificación en Visualización de datos y diseño de información.</p>
+        </div>
+
+        <!-- Habilidades -->
+        <div class="section">
+            <div class="dropdown">
+                <div class="dropdown-header" onclick="toggleDropdown('habilidades')">Habilidades <span>&#9660;</span></div>
+                <div class="dropdown-content" id="habilidades">
+                    <ul>
+                        <li>Paquete Office</li>
+                        <li>Python Básico</li>
+                        <li>Google Colab</li>
+                        <li>Visual Studio Code</li>
+                        <li>Power BI</li>
+                        <li>Canva</li>
+                        <li>Manipulación de alimentos</li>
+                        <li>Foguista</li>
+                        <li>Operador DeltaV EMERSON</li>
+                        <li>Manejo de Auto elevadores</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        function showContent(year) {
+            // Ocultar todos los contenidos
+            document.querySelectorAll('.timeline-content').forEach(content => {
+                content.classList.add('hidden');
+            });
+            // Mostrar el contenido correspondiente al año seleccionado
+            const selectedContent = document.getElementById(`content-${year}`);
+            if (selectedContent) {
+                selectedContent.classList.remove('hidden');
+            }
+        }
+
+        function toggleDropdown(id) {
+            const dropdown = document.getElementById(id);
+            if (dropdown.style.display === "block") {
+                dropdown.style.display = "none";
+            } else {
+                dropdown.style.display = "block";
+            }
+        }
+
+        // Gráficos de torta para personalidad
+        const energyChart = new Chart(document.getElementById('energyChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Extravertido', 'Introvertido'],
+                datasets: [{
+                    data: [75, 25],
+                    backgroundColor: ['#ffcc00', '#111']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+
+        const thoughtChart = new Chart(document.getElementById('thoughtChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Pensamiento', 'Sentimiento'],
+                datasets: [{
+                    data: [56, 44],
+                    backgroundColor: ['#ffcc00', '#111']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+
+        const identityChart = new Chart(document.getElementById('identityChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Asertivo', 'Turbo'],
+                datasets: [{
+                    data: [65, 35],
+                    backgroundColor: ['#ffcc00', '#111']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+
+        const mindChart = new Chart(document.getElementById('mindChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Intuitivo', 'Sensorial'],
+                datasets: [{
+                    data: [68, 32],
+                    backgroundColor: ['#ffcc00', '#111']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+
+        const tacticsChart = new Chart(document.getElementById('tacticsChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Juzgador', 'Perceptivo'],
+                datasets: [{
+                    data: [88, 12],
+                    backgroundColor: ['#ffcc00', '#111']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+
+        // Mostrar contenido inicial (opcional)
+        window.onload = () => showContent('1995');
+    </script>
+</body>
+</html>
